@@ -1,0 +1,18 @@
+sw_volume: 78
+audio_device_state:1:pulse audio
+state: play
+current: 0
+time: 120.074000
+random: 1
+repeat: 1
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Metal/Jinjer/Jinjer - King of Everything (2016)/01. Prologue.mp3
+1:Metal/Jinjer/Jinjer - King of Everything (2016)/06. Sit Stay Roll Over.mp3
+2:Metal/Jinjer/Jinjer - King of Everything (2016)/05. I Speak Astronomy.mp3
+3:Metal/Jinjer/Jinjer - King of Everything (2016)/04. Just Another.mp3
+playlist_end
