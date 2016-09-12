@@ -4,8 +4,8 @@
 # CONFIGURE BSPWM #
 ###################
 bspc config border_width        2
-bspc config window_gap          6
-bspc config top_padding         34
+bspc config window_gap          5
+bspc config top_padding         27
 bspc config split_ratio         0.6
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
@@ -26,16 +26,13 @@ bspc monitor HDMI2 -d I II III
 
 #bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a chromium desktop=NET
-bspc rule -a skype desktop=IM
+bspc rule -a Skype desktop=IM
 
-bspc rule -a pcmanfm floating=on
-bspc rule -a pavucontrol floating=on
-bspc rule -a xarchiver floating=on
-bspc rule -a galculator floating=on
-bspc rule -a gmpc floating=on
-bspc rule -a vlc floating=on
-bspc rule -a nitrogen floating=on
-bspc rule -a virt-manager floating=on
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Galculator state=floating
+bspc rule -a Sonata state=floating
+bspc rule -a Vlc state=floating
+bspc rule -a Nitrogen state=floating
 
 
 ###########
@@ -48,17 +45,16 @@ xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
 pcmanfm -d &
 nitrogen --restore
 xscreensaver -no-splash &
-compton -cCGf -D 5 -t "-5" -l "-5" -r 3 -b
+compton -b
 
 # Panel & Systray
-~/.config/panel/panel.sh &
-trayer --edge top --align right --widthtype pixel --width 158 --height 20 \
---iconspacing 2 --expand false --transparent true --alpha 0 --tint 4281150765 \
---distancefrom right --distance 3 &
+#~/.config/panel/panel.sh &
+yabar &
+(sleep 4 & stalonetray) &
 
 # Systray applets
 pa-applet &
 nm-applet &
 clipit &
 synergy &
-(sleep 4 && skype_noecho) &
+(sleep 4 && skype) &

@@ -35,8 +35,12 @@
 Xft.dpi:		96
 
 ! == URXVT ==
-URxvt.geometry: 100x25
-URxvt.font:		xft:Envy\ Code\ R:size=10
+URxvt.geometry:    100x25
+URxvt.font:		   xft:Envy\ Code\ R:size=10
+URxvt*transparent: false
+
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0000/c800
 
 ! == xscreensaver ==
 xscreensaver.Dialog.foreground:        #ffffff
@@ -50,3 +54,11 @@ xscreensaver.Dialog.Button.background: #2d2d2d
 
 xscreensaver.Dialog.text.foreground: #ffffff
 xscreensaver.Dialog.text.background: #2d2d2d
+
+! == ROFI Color theme ==
+rofi.separator-style: dash
+rofi.color-enabled: true
+rofi.color-window: #2d2d2d, #4c555d, #4c555d
+rofi.color-normal: #2d2d2d, #d2d2d2, #2d2d2d, #d2d2d2, #2d2d2d
+rofi.color-active: #6688aa, #d2d2d2, #6688aa, #87ceeb, #2d2d2d
+rofi.color-urgent: #aa4450, #d2d2d2, #aa4450, #ff6a6a, #2d2d2d
