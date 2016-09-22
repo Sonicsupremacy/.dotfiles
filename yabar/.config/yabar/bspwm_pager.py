@@ -16,8 +16,11 @@ try:
             if blk[0] in ["m", "M"]:
                 if blk[1:] == sys.argv[1]:
                     show = True
+                    if blk[0] == "m":
+                        sys.stdout.write('!Yfg0xffb0b0b0Y!')
                 else:
                     show = False
+
             else:
                 if show:
                     if blk[0] == "f":

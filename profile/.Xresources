@@ -40,7 +40,7 @@ URxvt.font:		   xft:Envy\ Code\ R:size=10
 URxvt*transparent: false
 
 URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0000/c800
+URxvt*background: [89]#2d2d2d
 
 ! == xscreensaver ==
 xscreensaver.Dialog.foreground:        #ffffff
