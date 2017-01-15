@@ -71,7 +71,8 @@ hi Comment      guifg=#686858 gui=italic
 hi Boolean      guifg=#ff9800 gui=NONE
 hi String       guifg=#779b70 gui=NONE
 hi Identifier   guifg=#9ebac2 gui=NONE
-hi Function     guifg=#faf4c6 gui=NONE
+"hi Function     guifg=#faf4c6 gui=NONE
+hi Function     guifg=#a6e22e gui=NONE
 hi Type         guifg=#7e8aa2 gui=NONE
 hi Statement    guifg=#90b0d1 gui=NONE
 hi Keyword      guifg=#90b0d1 gui=NONE

@@ -1,8 +1,8 @@
 # VIM
-style "vimfix" {
-	bg[NORMAL] = "#222222" # this matches my gvim theme 'Normal' bg color.
-}
-widget "vim-main-window.*GtkForm" style "vimfix"
+#style "vimfix" {
+#	bg[NORMAL] = "#222222" # this matches my gvim theme 'Normal' bg color.
+#}
+#widget "vim-main-window.*GtkForm" style "vimfix"
 
 # Eclipse
 #style "eclin" {

@@ -6,18 +6,19 @@ filetype off
 "====================
 call plug#begin('~/.vim/plugged')
 
-Plug 'fholgado/minibufexpl.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-Plug 'jaxbot/semantic-highlight.vim'
-Plug 'scrooloose/syntastic'
-Plug 'itchyny/lightline.vim'
+Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'vim-scripts/a.vim'
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'Raimondi/delimitMate'
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
+Plug 'fholgado/minibufexpl.vim'
+Plug 'vim-jp/vim-cpp'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'jeaye/color_coded'
+"Plug 'jaxbot/semantic-highlight.vim'
+"Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -72,11 +73,11 @@ syntax on
 "====================
 " PLUGIN SETTINGS
 "====================
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_confirm_extra_conf = 0
-
-let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:cpp_class_scope_highlight = 1
+let g:clang_library_path = '/usr/lib/libclang.so'
+let g:clang_complete_auto = 1
+let g:clang_complete_copen = 1
+let g:clang_close_preview = 1
 
 
 "====================
@@ -98,7 +99,7 @@ nnoremap <silent> <F7> :NERDTreeToggle<cr>
 "====================
 " AUTOCOMMANDS
 "====================
-autocmd BufWritePre,BufRead *.{c,cpp,h,hpp,py,pyw,cs,java,php,css} SemanticHighlight
+"autocmd BufWritePre,BufRead *.{c,cpp,h,hpp,py,pyw,cs,java,php,css} SemanticHighlight
 			"\ match BadWhitespace /\s\+$/
 
 autocmd Filetype html set tabstop=2 shiftwidth=2

@@ -32,9 +32,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
+
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+mpd
 
 xsetroot -cursor_name left_ptr
 sxhkd &
 exec bspwm
-#exec openbox-session

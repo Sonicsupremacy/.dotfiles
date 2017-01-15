@@ -1,2 +1,7 @@
 vim/.vim/plugged/
 vim/.vim/.netrwhist
+mpd/.config/mpd/database
+mpd/.config/mpd/log
+mpd/.config/mpd/pid
+mpd/.config/mpd/state
+scripts/

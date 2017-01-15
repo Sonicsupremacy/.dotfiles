@@ -6,7 +6,7 @@
 bspc config border_width        2
 bspc config window_gap          5
 bspc config top_padding         27
-bspc config split_ratio         0.6
+bspc config split_ratio         0.52
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config initial_polarity    first_child
@@ -21,40 +21,39 @@ bspc config pointer_follows_monitor true
 bspc config focus_by_distance       true
 bspc config focus_follows_pointer   true
 
-bspc monitor HDMI-2 -d I II III IV V
-bspc monitor HDMI-1 -d VI VII VIII NET IM
+bspc monitor HDMI2 -d I II III IV V
+bspc monitor HDMI1 -d VI VII VIII NET IM
 
 #bspc rule -a Gimp desktop=^8 follow=on floating=on
-bspc rule -a chromium desktop=NET
-bspc rule -a Skype desktop=IM
+bspc rule -a Chromium desktop=NET
+bspc rule -a skypeforlinux desktop=IM
 
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Galculator state=floating
 bspc rule -a Sonata state=floating
 bspc rule -a Vlc state=floating
 bspc rule -a Nitrogen state=floating
+#bspc rule -a *:"Repetier-Host V1.6.2" state=floating
 
 
 ###########
 # AUTORUN #
 ###########
-xrandr --output HDMI-2 --primary --output HDMI-1 --right-of HDMI-2
+#xrandr --output HDMI-2 --primary --output HDMI-1 --right-of HDMI-2
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 pcmanfm -d &
 nitrogen --restore
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 compton -b
 
 # Panel & Systray
-#~/.config/panel/panel.sh &
-yabar &
-(sleep 4 && stalonetray) &
+polybar hdmi2_bar &
+polybar hdmi1_bar &
 
 # Systray applets
-pa-applet &
+#pa-applet &
 nm-applet &
-clipit &
+#clipit &
 synergy &
-(sleep 4 && skype) &

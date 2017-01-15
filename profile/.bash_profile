@@ -3,8 +3,10 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[ ! -s ~/.config/mpd/pid ] && mpd
+#[ ! -s ~/.config/mpd/pid ] && mpd
 
-echo "Starting X... Press Ctrl-C now to cancel!"
-sleep 1
-startx
+if [ ! $TERM == "screen" ]; then
+	echo "Starting X... Press Ctrl-C now to cancel!"
+	sleep 1
+	startx
+fi

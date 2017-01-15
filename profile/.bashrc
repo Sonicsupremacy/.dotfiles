@@ -17,8 +17,8 @@ fi
 export XDG_CONFIG_HOME="$HOME/.config"
 export SWT_GTK3=0
 
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+#export WORKON_HOME=~/.virtualenvs
+#source /usr/bin/virtualenvwrapper.sh
 
 # PACAUR
 export PKGDEST=/var/cache/pacaur
