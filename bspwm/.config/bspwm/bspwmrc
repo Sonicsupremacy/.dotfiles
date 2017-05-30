@@ -6,14 +6,14 @@
 bspc config border_width        2
 bspc config window_gap          5
 bspc config top_padding         27
-bspc config split_ratio         0.52
+bspc config split_ratio         0.5
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config initial_polarity    first_child
 
-bspc config normal_border_color  "#4c555d"
-bspc config active_border_color  "#2d2d2d"
-bspc config focused_border_color "#2d2d2d"
+bspc config focused_border_color  "d2d2d2"
+bspc config active_border_color  "#4c555d"
+bspc config normal_border_color "#2d2d2d"
 bspc config urgent_border_color  "#d64935"
 
 bspc config pointer_follows_focus   false
@@ -22,9 +22,9 @@ bspc config focus_by_distance       true
 bspc config focus_follows_pointer   true
 
 bspc monitor HDMI2 -d I II III IV V
+#bspc monitor VGA1 -d I II III IV V
 bspc monitor HDMI1 -d VI VII VIII NET IM
 
-#bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a Chromium desktop=NET
 bspc rule -a skypeforlinux desktop=IM
 
@@ -33,7 +33,9 @@ bspc rule -a Galculator state=floating
 bspc rule -a Sonata state=floating
 bspc rule -a Vlc state=floating
 bspc rule -a Nitrogen state=floating
-#bspc rule -a *:"Repetier-Host V1.6.2" state=floating
+bspc rule -a qjackctl state=floating
+bspc rule -a FLTK state=floating
+bspc rule -a gpicview state=floating
 
 
 ###########
@@ -55,5 +57,5 @@ polybar hdmi1_bar &
 # Systray applets
 #pa-applet &
 nm-applet &
-#clipit &
+parcellite &
 synergy &

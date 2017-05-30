@@ -61,7 +61,7 @@ set showmatch
 
 colorscheme sourcerer
 if has("gui_running")
-	set gfn=Envy\ Code\ R\ 10
+	set gfn=Envy\ Code\ R\ 9.7
 	set go=
 	"set bg=light
 	set guicursor+=a:blinkon0
@@ -101,6 +101,7 @@ nnoremap <silent> <F7> :NERDTreeToggle<cr>
 "====================
 "autocmd BufWritePre,BufRead *.{c,cpp,h,hpp,py,pyw,cs,java,php,css} SemanticHighlight
 			"\ match BadWhitespace /\s\+$/
+autocmd BufWritePre,BufRead *.{py,pyw,js}
 
 autocmd Filetype html set tabstop=2 shiftwidth=2
 autocmd Filetype python set expandtab softtabstop=4 shiftwidth=4 textwidth=79

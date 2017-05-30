@@ -13,18 +13,18 @@ offset-y = 5
 
 background = #e42d2d2d
 foreground = #d2d2d2
-underline-size = 2
+line-size = 2
 
 modules-left = bspwm mpd
-modules-center =
-modules-right = cpu mem clock
+modules-center = title
+modules-right = clock
 module-margin-left = 2
 module-margin-right = 0
 
 wm-restack = bspwm
 
-font-0 = Noto Mono:size=10
-font-1 = FontAwesome:size=10
+font-0 = "Noto Mono:size=10;2"
+font-1 = "FontAwesome:size=10;2"
 
 ; ==================================================
 ;  RIGHT BAR
@@ -42,10 +42,10 @@ padding-right = 2
 
 background = #e42d2d2d
 foreground = #d2d2d2
-underline-size = 2
+line-size = 2
 
-modules-left = bspwm
-modules-center =
+modules-left = bspwm cpu mem
+modules-center = title
 modules-right = fs
 module-margin-left = 2
 module-margin-right = 0
@@ -54,8 +54,8 @@ wm-restack = bspwm
 tray-position = right
 tray-padding = 2
 
-font-0 = Noto Mono:size=10
-font-1 = FontAwesome:size=10
+font-0 = "Noto Mono:size=10;2"
+font-1 = "FontAwesome:size=10;2"
 
 ; ==================================================
 ;  MODULES
@@ -86,7 +86,7 @@ interval = 2
 format-online-padding = 2
 format-online-underline = #e4d2d2d2
 format-online =   <toggle> <icon-stop> <label-song>
-label-song = [%artist:0:20:...% - %title:0:20:...%]
+label-song = %artist% - %title%
 
 icon-play = 
 icon-pause = 
@@ -129,3 +129,15 @@ format-mounted = <label-mounted>
 label-mounted =  %mountpoint% %percentage_used% used
 format-mounted-padding = 2
 format-mounted-underline = #e4d2d2d2
+
+[module/title]
+type = internal/xwindow
+label-maxlen = 50
+
+[module/net]
+type = internal/network
+interface = enp3s0
+label-connected =  %downspeed:4%  %upspeed:4%
+
+format-connected-underline = #e4d2d2d2
+format-connected-padding = 2
