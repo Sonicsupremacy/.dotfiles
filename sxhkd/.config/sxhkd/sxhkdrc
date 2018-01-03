@@ -66,6 +66,9 @@ super + {t,b,n}
 super + Return
 	urxvt
 
+super + alt + v
+	~/.scripts/winvm.sh
+
 super + {_, shift +} r
 	rofi -show {run, drun}
 

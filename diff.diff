@@ -1,0 +1,214 @@
+diff --git a/bspwm/.config/bspwm/bspwmrc b/bspwm/.config/bspwm/bspwmrc
+index 987f9f0..0c2b938 100755
+--- a/bspwm/.config/bspwm/bspwmrc
++++ b/bspwm/.config/bspwm/bspwmrc
+@@ -1,8 +1,24 @@
+ #! /bin/sh
+ 
++~/.scripts/monitor_plugin_detect.sh -c
++NUM_MONITORS=$?
++echo "got $NUM_MONITORS monitors"
++
+ ###################
+ # CONFIGURE BSPWM #
+ ###################
++if [ $NUM_MONITORS -eq 1 ]; then
++	echo "configuring bspwm for single monitor use"
++
++	monitor=$(xrandr | awk '$2 == "connected" {print $1}')
++	bspc monitor $monitor -d I II III IV V NET IM
++else
++	echo "configuring bspwm for dual monitor use"
++
++	bspc monitor HDMI2 -d I II III IV V
++	bspc monitor HDMI1 -d VI VII VIII NET IM
++fi
++
+ bspc config border_width        2
+ bspc config window_gap          5
+ bspc config top_padding         27
+@@ -11,7 +27,7 @@ bspc config borderless_monocle  true
+ bspc config gapless_monocle     true
+ bspc config initial_polarity    first_child
+ 
+-bspc config focused_border_color  "d2d2d2"
++bspc config focused_border_color  "#d2d2d2"
+ bspc config active_border_color  "#4c555d"
+ bspc config normal_border_color "#2d2d2d"
+ bspc config urgent_border_color  "#d64935"
+@@ -26,12 +42,9 @@ bspc config pointer_follows_monitor true
+ bspc config focus_by_distance       true
+ bspc config focus_follows_pointer   true
+ 
+-bspc monitor HDMI2 -d I II III IV V
+-#bspc monitor VGA1 -d I II III IV V
+-bspc monitor HDMI1 -d VI VII VIII NET IM
+-
+ bspc rule -a Chromium desktop=NET
+-bspc rule -a skypeforlinux desktop=IM
++bspc rule -a "Vivaldi-stable" desktop=NET
++bspc rule -a Skype desktop=IM state=floating
+ 
+ bspc rule -a Pavucontrol state=floating
+ bspc rule -a Galculator state=floating
+@@ -46,6 +59,7 @@ bspc rule -a Gpicview state=floating
+ ###########
+ # AUTORUN #
+ ###########
++echo "spawning startup programs"
+ #xrandr --output HDMI-2 --primary --output HDMI-1 --right-of HDMI-2
+ 
+ /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+@@ -56,8 +70,12 @@ nitrogen --restore
+ compton -b
+ 
+ # Panel & Systray
+-polybar hdmi2_bar &
+-polybar hdmi1_bar &
++if [ $NUM_MONITORS -eq 1 ]; then
++	polybar single_bar & 
++else
++	polybar hdmi2_bar &
++	polybar hdmi1_bar &
++fi
+ 
+ # Systray applets
+ #pa-applet &
+diff --git a/git/.gitconfig b/git/.gitconfig
+index 4a0ea8e..0637a00 100644
+--- a/git/.gitconfig
++++ b/git/.gitconfig
+@@ -6,3 +6,16 @@
+ 	smudge = git-lfs smudge -- %f
+ 	process = git-lfs filter-process
+ 	required = true
++
++#################################################
++#                 URL Shortening                #
++#################################################
++# AUR
++[url "https://aur.archlinux.org/"]
++	insteadOf = "aur:"
++
++# GitHub
++[url "https://github.com/"]
++	insteadOf = "gh:"
++[url "git@github.com:"]
++	pushInsteadOf = "gh:"
+diff --git a/polybar/.config/polybar/config b/polybar/.config/polybar/config
+index 42a77e1..7256f1a 100644
+--- a/polybar/.config/polybar/config
++++ b/polybar/.config/polybar/config
+@@ -1,3 +1,31 @@
++; ==================================================
++;  ALT BAR
++; ==================================================
++[bar/single_bar]
++bottom = false
++
++width = 1910
++height = 22
++offset-x = 5
++offset-y = 5
++
++background = #e42d2d2d
++foreground = #d2d2d2
++line-size = 2
++
++modules-left = bspwm cpu mem mpd
++modules-center = title
++modules-right = fs clock
++module-margin-left = 2
++module-margin-right = 0
++
++wm-restack = bspwm
++tray-position = right
++tray-padding = 2
++
++font-0 = "Noto Mono:size=10;2"
++font-1 = "FontAwesome:size=10;2"
++
+ ; ==================================================
+ ;  MIDDLE BAR
+ ; ==================================================
+diff --git a/profile/.bashrc b/profile/.bashrc
+index 6d55be0..cdd645f 100755
+--- a/profile/.bashrc
++++ b/profile/.bashrc
+@@ -15,7 +15,12 @@ else
+ fi
+ 
+ export XDG_CONFIG_HOME="$HOME/.config"
++export XDG_CACHE_HOME="$HOME/.cache"
++export XDG_DATA_HOME="$HOME/.local/share"
++
+ export SWT_GTK3=0
++export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
++export JAVA_FONTS=/usr/share/fonts/TTF
+ 
+ #export WORKON_HOME=~/.virtualenvs
+ #source /usr/bin/virtualenvwrapper.sh
+diff --git a/profile/.xinitrc b/profile/.xinitrc
+index b231136..6a14187 100755
+--- a/profile/.xinitrc
++++ b/profile/.xinitrc
+@@ -32,12 +32,21 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+  unset f
+ fi
+ 
+-xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
++#if [ $(~/.scripts/monitor_plugin_detect.sh -c) -eq 2 ]; then
++	xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
++#fi
+ 
+ export _JAVA_AWT_WM_NONREPARENTING=1
+ 
+ mpd
+ 
++# Create folder for bspwm std{out,err} redirection
++[ -x "${XDG_CACHE_HOME}"/bspwm ] || mkdir -p "${XDG_CACHE_HOME}"/bspwm
++
++echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stdout
++echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stderr
++
+ xsetroot -cursor_name left_ptr
+ sxhkd &
+-exec bspwm
++exec bspwm >> "${XDG_CACHE_HOME}"/bspwm/stdout 2>> "${XDG_CACHE_HOME}"/bspwm/stderr
++
+diff --git a/sxhkd/.config/sxhkd/sxhkdrc b/sxhkd/.config/sxhkd/sxhkdrc
+index 52eedb7..c6aa8fd 100644
+--- a/sxhkd/.config/sxhkd/sxhkdrc
++++ b/sxhkd/.config/sxhkd/sxhkdrc
+@@ -66,6 +66,9 @@ super + {t,b,n}
+ super + Return
+ 	urxvt
+ 
++super + alt + v
++	~/.scripts/winvm.sh
++
+ super + {_, shift +} r
+ 	rofi -show {run, drun}
+ 
+diff --git a/vim/.vimrc b/vim/.vimrc
+index 38d6df8..1dacd2e 100755
+--- a/vim/.vimrc
++++ b/vim/.vimrc
+@@ -94,14 +94,16 @@ map <C-k> <C-W>k
+ map <C-h> <C-W>h
+ map <C-l> <C-W>l
+ 
++" Other
+ nnoremap <silent> <F7> :NERDTreeToggle<cr>
++nnoremap <silent> <F6> :%!xmllint --encode UTF-8 --format -<cr>
+ 
+ "====================
+ " AUTOCOMMANDS
+ "====================
+ "autocmd BufWritePre,BufRead *.{c,cpp,h,hpp,py,pyw,cs,java,php,css} SemanticHighlight
+ 			"\ match BadWhitespace /\s\+$/
+-autocmd BufWritePre,BufRead *.{py,pyw,js}
++"autocmd BufWritePre,BufRead *.{py,pyw,js}
+ 
+ autocmd Filetype html set tabstop=2 shiftwidth=2
+ autocmd Filetype python set expandtab softtabstop=4 shiftwidth=4 textwidth=79

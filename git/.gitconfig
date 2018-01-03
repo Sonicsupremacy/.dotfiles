@@ -6,3 +6,16 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+#################################################
+#                 URL Shortening                #
+#################################################
+# AUR
+[url "https://aur.archlinux.org/"]
+	insteadOf = "aur:"
+
+# GitHub
+[url "https://github.com/"]
+	insteadOf = "gh:"
+[url "git@github.com:"]
+	pushInsteadOf = "gh:"

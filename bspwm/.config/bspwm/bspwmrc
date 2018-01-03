@@ -1,8 +1,24 @@
 #! /bin/sh
 
+~/.scripts/monitor_plugin_detect.sh -c
+NUM_MONITORS=$?
+echo "got $NUM_MONITORS monitors"
+
 ###################
 # CONFIGURE BSPWM #
 ###################
+if [ $NUM_MONITORS -eq 1 ]; then
+	echo "configuring bspwm for single monitor use"
+
+	monitor=$(xrandr | awk '$2 == "connected" {print $1}')
+	bspc monitor $monitor -d I II III IV V NET IM
+else
+	echo "configuring bspwm for dual monitor use"
+
+	bspc monitor HDMI2 -d I II III IV V
+	bspc monitor HDMI1 -d VI VII VIII NET IM
+fi
+
 bspc config border_width        2
 bspc config window_gap          5
 bspc config top_padding         27
@@ -11,7 +27,7 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config initial_polarity    first_child
 
-bspc config focused_border_color  "d2d2d2"
+bspc config focused_border_color  "#d2d2d2"
 bspc config active_border_color  "#4c555d"
 bspc config normal_border_color "#2d2d2d"
 bspc config urgent_border_color  "#d64935"
@@ -26,12 +42,9 @@ bspc config pointer_follows_monitor true
 bspc config focus_by_distance       true
 bspc config focus_follows_pointer   true
 
-bspc monitor HDMI2 -d I II III IV V
-#bspc monitor VGA1 -d I II III IV V
-bspc monitor HDMI1 -d VI VII VIII NET IM
-
 bspc rule -a Chromium desktop=NET
-bspc rule -a skypeforlinux desktop=IM
+bspc rule -a "Vivaldi-stable" desktop=NET
+bspc rule -a Skype desktop=IM state=floating
 
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Galculator state=floating
@@ -46,6 +59,7 @@ bspc rule -a Gpicview state=floating
 ###########
 # AUTORUN #
 ###########
+echo "spawning startup programs"
 #xrandr --output HDMI-2 --primary --output HDMI-1 --right-of HDMI-2
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -56,8 +70,12 @@ nitrogen --restore
 compton -b
 
 # Panel & Systray
-polybar hdmi2_bar &
-polybar hdmi1_bar &
+if [ $NUM_MONITORS -eq 1 ]; then
+	polybar single_bar & 
+else
+	polybar hdmi2_bar &
+	polybar hdmi1_bar &
+fi
 
 # Systray applets
 #pa-applet &

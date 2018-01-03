@@ -94,14 +94,16 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Other
 nnoremap <silent> <F7> :NERDTreeToggle<cr>
+nnoremap <silent> <F6> :%!xmllint --encode UTF-8 --format -<cr>
 
 "====================
 " AUTOCOMMANDS
 "====================
 "autocmd BufWritePre,BufRead *.{c,cpp,h,hpp,py,pyw,cs,java,php,css} SemanticHighlight
 			"\ match BadWhitespace /\s\+$/
-autocmd BufWritePre,BufRead *.{py,pyw,js}
+"autocmd BufWritePre,BufRead *.{py,pyw,js}
 
 autocmd Filetype html set tabstop=2 shiftwidth=2
 autocmd Filetype python set expandtab softtabstop=4 shiftwidth=4 textwidth=79

@@ -32,12 +32,21 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
+#if [ $(~/.scripts/monitor_plugin_detect.sh -c) -eq 2 ]; then
+	xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
+#fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 mpd
 
+# Create folder for bspwm std{out,err} redirection
+[ -x "${XDG_CACHE_HOME}"/bspwm ] || mkdir -p "${XDG_CACHE_HOME}"/bspwm
+
+echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stdout
+echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stderr
+
 xsetroot -cursor_name left_ptr
 sxhkd &
-exec bspwm
+exec bspwm >> "${XDG_CACHE_HOME}"/bspwm/stdout 2>> "${XDG_CACHE_HOME}"/bspwm/stderr
+
