@@ -36,9 +36,10 @@ fi
 	xrandr --output HDMI2 --primary --output HDMI1 --right-of HDMI2
 #fi
 
-export _JAVA_AWT_WM_NONREPARENTING=1
 
-mpd
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Create folder for bspwm std{out,err} redirection
 [ -x "${XDG_CACHE_HOME}"/bspwm ] || mkdir -p "${XDG_CACHE_HOME}"/bspwm

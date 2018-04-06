@@ -24,7 +24,8 @@ tray-position = right
 tray-padding = 2
 
 font-0 = "Noto Mono:size=10;2"
-font-1 = "FontAwesome:size=10;2"
+font-1 = "Font Awesome 5 Free:style=Regular:size=10;2"
+font-2 = "Font Awesome 5 Free:style=Solid:size=10;2"
 
 ; ==================================================
 ;  MIDDLE BAR
@@ -52,7 +53,8 @@ module-margin-right = 0
 wm-restack = bspwm
 
 font-0 = "Noto Mono:size=10;2"
-font-1 = "FontAwesome:size=10;2"
+font-1 = "Font Awesome 5 Free:style=Regular:size=10;2"
+font-2 = "Font Awesome 5 Free:style=Solid:size=10;2"
 
 ; ==================================================
 ;  RIGHT BAR
@@ -83,7 +85,8 @@ tray-position = right
 tray-padding = 2
 
 font-0 = "Noto Mono:size=10;2"
-font-1 = "FontAwesome:size=10;2"
+font-1 = "Font Awesome 5 Free:style=Regular:size=10;2"
+font-2 = "Font Awesome 5 Free:style=Solid:size=10;2"
 
 ; ==================================================
 ;  MODULES
@@ -96,18 +99,18 @@ format = <label-state>
 format-underline = #e4d2d2d2
 format-padding = 1
 
-label-focused = 
+label-focused = 
 label-focused-padding = 1
-label-occupied = 
+label-occupied = 
 label-occupied-padding = 1
-label-empty = 
+label-empty = 
 label-empty-padding = 1
-label-urgent = 
+label-urgent = 
 label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
-host = 127.0.0.1
+host = 10.2.1.10
 port = 6600
 interval = 2
 
@@ -123,7 +126,7 @@ icon-stop = 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-padding = 2
 format-underline = #e4d2d2d2
 
@@ -154,7 +157,7 @@ fixed-values = true
 spacing = 0
 
 format-mounted = <label-mounted>
-label-mounted =  %mountpoint% %percentage_used% used
+label-mounted =  %mountpoint% %percentage_used% used
 format-mounted-padding = 2
 format-mounted-underline = #e4d2d2d2
 
@@ -165,7 +168,7 @@ label-maxlen = 50
 [module/net]
 type = internal/network
 interface = enp3s0
-label-connected =  %downspeed:4%  %upspeed:4%
+label-connected =  %downspeed:4%  %upspeed:4%
 
 format-connected-underline = #e4d2d2d2
 format-connected-padding = 2

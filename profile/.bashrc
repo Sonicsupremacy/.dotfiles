@@ -22,6 +22,9 @@ export SWT_GTK3=0
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 
+export ANDROID_HOME=/opt/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+
 #export WORKON_HOME=~/.virtualenvs
 #source /usr/bin/virtualenvwrapper.sh
 
