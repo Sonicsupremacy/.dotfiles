@@ -43,6 +43,9 @@ URxvt*depth: 32
 URxvt*background: [89]#2d2d2d
 URxvt*borderLess: false
 
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
 ! == xscreensaver ==
 xscreensaver.Dialog.foreground:        #ffffff
 xscreensaver.Dialog.background:        #4c555d

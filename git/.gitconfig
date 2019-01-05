@@ -19,3 +19,5 @@
 	insteadOf = "gh:"
 [url "git@github.com:"]
 	pushInsteadOf = "gh:"
+[core]
+	autocrlf = input
