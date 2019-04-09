@@ -46,10 +46,11 @@ bspc config click_to_focus          button1
 bspc rule -a Chromium desktop=NET
 bspc rule -a "Vivaldi-stable" desktop=NET
 bspc rule -a Skype desktop=IM state=floating
+bspc rule -a Discord desktop=IM
 
 bspc rule -a Pavucontrol state=floating
-bspc rule -a Galculator state=floating
 bspc rule -a Sonata state=floating
+bspc rule -a "Gnome-calculator" state=floating
 bspc rule -a Vlc state=floating
 bspc rule -a Nitrogen state=floating
 bspc rule -a qjackctl state=floating

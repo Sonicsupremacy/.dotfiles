@@ -1,6 +1,6 @@
 [global]
 	font = DejaVu Sans Mono 9
-	allow_markup = yes
+	markup = full
 	plain_text = no
 	format = "<b>%s</b>\n%b%p"
 	sort = no
@@ -14,8 +14,7 @@
 	shrink = yes
 	transparency = 0
 	idle_threshold = 120
-	monitor = 1
-	follow = none
+	follow = mouse
 	sticky_history = yes
 	history_length = 20
 	show_indicators = yes
@@ -26,7 +25,8 @@
 	startup_notification = false
 	browser = /usr/bin/chromium
 	icon_position = left
-	icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/ 
+	icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/ 
+	max_icon_size = 32
 
 [frame]
 	width = 3
