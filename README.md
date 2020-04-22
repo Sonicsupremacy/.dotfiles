@@ -1,7 +1,7 @@
 My dotfiles are managed by gnu stow (a symling farm manager) so they can reside
 in a single folder and then be symlinked to a proper location
 
-##How to install##
+# How to install #
 * clone this repo into your home directory
 * cd into ~/.dotfiles
 * run stow _config-to-install_ (eg. stow openbox)
