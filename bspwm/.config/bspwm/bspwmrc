@@ -44,7 +44,7 @@ bspc config focus_follows_pointer   true
 bspc config click_to_focus          button1
 
 bspc rule -a Chromium desktop=NET
-bspc rule -a "Vivaldi-stable" desktop=NET
+bspc rule -a Firefox desktop=NET
 bspc rule -a Skype desktop=IM state=floating
 bspc rule -a Discord desktop=IM
 

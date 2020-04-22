@@ -6,19 +6,25 @@ filetype off
 "====================
 call plug#begin('~/.vim/plugged')
 
-Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
+" Common plugins
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'fholgado/minibufexpl.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'jeaye/color_coded'
+Plug 'Raimondi/delimitMate'
+"Plug 'scrooloose/syntastic'
+"Plug 'jaxbot/semantic-highlight.vim'
+
+" C/C++ plugins
+Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
+Plug 'vim-jp/vim-cpp', { 'for': ['cpp', 'c'] }
+Plug 'vim-scripts/a.vim', { 'for': ['cpp', 'c'] }
+Plug 'LucHermitte/vim-refactor', { 'for': ['cpp', 'c'] }
+"Plug 'octol/vim-cpp-enhanced-highlight'
+
+" Python plugins
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-Plug 'fholgado/minibufexpl.vim'
-Plug 'vim-jp/vim-cpp'
-"Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'itchyny/lightline.vim'
-Plug 'vim-scripts/a.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'jeaye/color_coded'
-"Plug 'jaxbot/semantic-highlight.vim'
-"Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -84,9 +90,9 @@ let g:clang_close_preview = 1
 " KEY MAPPING
 "====================
 " Tabs
-map  <S-l> :tabn<CR>
-map  <S-h> :tabp<CR>
-map  <S-n> :tabnew<CR>
+map <S-l> :tabn<CR>
+map <S-h> :tabp<CR>
+map <S-n> :tabnew<CR>
 
 " Window navigation
 map <C-j> <C-W>j
@@ -97,6 +103,8 @@ map <C-l> <C-W>l
 " Other
 nnoremap <silent> <F7> :NERDTreeToggle<cr>
 nnoremap <silent> <F6> :%!xmllint --encode UTF-8 --format -<cr>
+nnoremap <silent> <A-f> <x> :%!xmllint --encode UTF-8 --format -<cr>
+nnoremap <silent> <A-f> <j> :%!jq '.'<cr>
 
 "====================
 " AUTOCOMMANDS

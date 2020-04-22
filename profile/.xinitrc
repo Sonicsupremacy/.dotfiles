@@ -44,8 +44,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Create folder for bspwm std{out,err} redirection
 [ -x "${XDG_CACHE_HOME}"/bspwm ] || mkdir -p "${XDG_CACHE_HOME}"/bspwm
 
-tail -n 100 > "${XDG_CACHE_HOME}"/bspwm/stdout
-tail -n 100 > "${XDG_CACHE_HOME}"/bspwm/stderr
+#tail -n 100 > "${XDG_CACHE_HOME}"/bspwm/stdout
+#tail -n 100 > "${XDG_CACHE_HOME}"/bspwm/stderr
 
 echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stdout
 echo "===== STARTUP AT $(date +"%Y-%m-%d %H:%M:%S") =====" >> "${XDG_CACHE_HOME}"/bspwm/stderr
