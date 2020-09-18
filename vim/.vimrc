@@ -103,7 +103,7 @@ map <C-l> <C-W>l
 " Other
 nnoremap <silent> <F7> :NERDTreeToggle<cr>
 nnoremap <silent> <F6> :%!xmllint --encode UTF-8 --format -<cr>
-nnoremap <silent> <A-f> <x> :%!xmllint --encode UTF-8 --format -<cr>
+nnoremap <silent> <A-f> <m> :%!xmllint --encode UTF-8 --format -<cr>
 nnoremap <silent> <A-f> <j> :%!jq '.'<cr>
 
 "====================
